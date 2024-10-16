@@ -11,6 +11,7 @@ import About from './pages/about';
 import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
+import Password from './pages/dashboard/settings/password/Password';
 
 function App() {
 
@@ -23,19 +24,24 @@ function App() {
       path: "/about",
       element: <About />
     },
+    // {
+    //   path: "/dashboard/overview",
+    //   element: <About />
+    // },
     {
       path: "/dashboard",
       element: <DashboardLayout />,
-      children:[
-       {
-        index:true,
-        // path:"overview",
-        element:<Overview/>
-       },
-       {
-        path:"settings",
-        element:<Settings/>
-       }
+      children: [
+        {
+          index: true,
+          // path:"overview",
+          element: <Overview />
+        },
+        {
+          path: "settings",
+          element: <Settings />,
+             
+        }
       ]
     }
   ]);
