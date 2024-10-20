@@ -11,7 +11,7 @@ import About from './pages/about';
 import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
-import Password from './pages/dashboard/settings/password/Password';
+// import Password from './pages/dashboard/settings/password/Password';
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
       children: [
         {
           index: true,
-          // path:"overview",
+          path:"overview",
           element: <Overview />
         },
         {
