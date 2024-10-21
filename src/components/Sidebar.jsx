@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <>
     {/* <div className='flex flex-col'> */}
-      <div className='flex flex-row'>
+      <div className='flex flex-row '>
         <div className='flex flex-row'>
 
           <div className="div bg-teal-100 h-[100vh] w-[15vw]">
@@ -19,14 +19,11 @@ const Sidebar = () => {
             </div>
           </div>
           <div className='vertical-line h-[100vh] border-l-[0.5px] border-dotted bg-emerald-900'>
-
           </div>
         </div>
-        <div className="side-navbar h-[8vh] w-[99vw] bg-teal-900">
-          dsad
-        </div>
+         
       </div>
-      hhh
+      {/* hhh */}
       {/* </div> */}
     </>
   )
