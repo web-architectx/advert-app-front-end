@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const Settings = () => {
   return (
-    <div>
+    <div className>
       <Outlet/>
       settings
     </div>

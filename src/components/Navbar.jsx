@@ -1,25 +1,29 @@
 import React from 'react'
+import { FiAlignJustify } from "react-icons/fi";
+import { IoMdSettings } from "react-icons/io";
+import { RiUserFill } from "react-icons/ri";
+import { PiBellRinging } from "react-icons/pi";
+import ProfileImage from '../assets/images/profile.jpg'
+
+
+
 
 const Navbar = () => {
   return (
-    <>
-    <div className='flex flex-row justify-between	 bg-lime-600 h-[70px] '>
-      {/* <div className='flex flex-row gap-[20px] bg-lime-600 h-[70px] justify-end'> */}
-      <h1 className='mt-[30px] font-bold text-3xl pl-[1rem]	'>Tomame</h1>
-      <button className='border-2 border rounded-full px-4 py-2 h-[3rem] w-[5rem] m-4'>Sell</button>
-      {/* <div>
-        <button className='border-2 border rounded-full px-4 py-2 '>Sell</button>
-      </div> */}
-    </div>
+ 
+    <div className=' h-[15vh]  w-[84.9vw] bg-white border-shadow flex flex-row justify-between left-0 right-0 fixed justify-self-end'>
+    {/* <div className=' h-[15vh] md:h-[12 vh] w-[100vw] bg-teal-200 flex flex-row'> */}
+     <div className='flex flex-row p-4 gap-2'>
+     <FiAlignJustify size={40} />
+     <input type="text" className='h-12 w-[250px] rounded-[10px] border-2'/>
+     </div>
 
-
-  <div className='h-[40vh] bg-lime-600 w-[80rem] '>
-    <button className=' flex justify-center  bg-white w-[30rem] rounded-[30px] mx-auto h-[3rem] my-auto  pt-[1rem] pr-[10rem]	pb[3rem]'>what are you looking for?</button>
-  </div>
-    </>
-
-  
-
+     <div className='flex flex-row  gap-2 p-4 ' >
+     <IoMdSettings size={30} />
+     <PiBellRinging size={30} />
+     <RiUserFill size={30} />
+<img src={ProfileImage} alt="img" className='rounded-[20px] mt-[-12px] ' />
+     </div> 
   )
 
 }

@@ -8,9 +8,12 @@ import {
 } from "react-router-dom";
 import Home from './pages/home';
 import About from './pages/about';
-import DashboardLayout from './layouts/DashboardLayout';
+import DashboardLayout from '../src/layouts/DashboardLayout';
+// import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
+import Adverts from './pages/dashboard/advert';
+// import Adverts from '../pages/dashboard/ads'
 // import Password from './pages/dashboard/settings/password/Password';
 
 function App() {
@@ -30,12 +33,21 @@ function App() {
     // },
     {
       path: "/dashboard",
-      element: <DashboardLayout />,
+      element: <DashboardLayout/>,
+       
       children: [
         {
           index: true,
           path:"overview",
           element: <Overview />
+        },
+        {
+          // index:true,
+          path: "adverts",
+          // element: <Adverts/>,
+          element: <Adverts/>
+             
+        
         },
         {
           path: "settings",
