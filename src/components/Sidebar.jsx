@@ -4,6 +4,7 @@ import { SiSimpleanalytics } from "react-icons/si";
 import { Link } from 'react-router-dom';
 import { RiAdvertisementFill } from "react-icons/ri";
 import { GrOverview } from "react-icons/gr";
+import { FiLogOut } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
@@ -30,8 +31,21 @@ const Sidebar = () => {
           <MdNavigateNext size={20} className="ml-auto" />
         </Link>
       </div>
+      
+      {/* Logout Button */}
+      <div className="mt-auto">
+        <button
+          className="flex items-center w-full p-3 mt-4 bg-red-600 text-white rounded-lg transition duration-300 hover:bg-red-700"
+          onClick={() => console.log('Logging out...')}
+        >
+          <FiLogOut size={25} className="mr-3" />
+          Logout
+        </button>
+      </div>
+
+      {/* Footer */}
       <div className="mt-8 text-center">
-        <p className="text-sm">© 2024 Your Company</p>
+        <p className="text-sm">© 2024 Web Architectx</p>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';  
 import loadingGif from '../../../assets/images/Dual Ring@1x-1.0s-200px-200px.gif'; 
+import PostAdvertModal from '../components/PostAdvertModal';
 
 const Adverts = () => {
   const [adverts, setAdverts] = useState([]);
@@ -25,7 +26,7 @@ const Adverts = () => {
 
   if (loading) {
     return (
-      <div className="h-screen mx-auto my-auto">
+      <div className="h-2/5 mx-auto my-auto">
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center bg-white">
             <img 
@@ -44,6 +45,9 @@ const Adverts = () => {
     <div className="flex flex-col justify-center items-center h-screen">
       <Outlet />
       <h2 className="text-2xl font-bold mb-4">Adverts</h2>
+      <button>
+                 <PostAdvertModal/>
+                 </button>
       <div className="overflow-x-auto">
         {adverts.length > 0 ? (
           <table className="min-w-full bg-white border border-gray-200">
