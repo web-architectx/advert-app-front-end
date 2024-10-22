@@ -8,6 +8,7 @@ import ProfileImage from '../assets/images/pp.jpeg';
 import Profile from '../pages/dashboard/auth/component/Profile';
 
 const Navbar = () => {
+ 
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   // Toggle the profile visibility
@@ -65,5 +66,6 @@ const Navbar = () => {
     </div>
   );
 };
+ 
 
 export default Navbar;
