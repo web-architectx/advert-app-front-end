@@ -13,6 +13,8 @@ import DashboardLayout from '../src/layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
 import Adverts from './pages/dashboard/advert';
+import Login from './pages/dashboard/auth/Login';
+import Register from './pages/dashboard/auth/Register';
 // import Adverts from '../pages/dashboard/ads'
 // import Password from './pages/dashboard/settings/password/Password';
 
@@ -26,6 +28,16 @@ function App() {
     {
       path: "/about",
       element: <About />
+    },
+    {
+      path: "login",
+      element: <Login />,
+         
+    },
+    {
+      path: "register",
+      element: <Register />,
+         
     },
     // {
     //   path: "/dashboard/overview",
@@ -54,6 +66,7 @@ function App() {
           element: <Settings />,
              
         }
+       
       ]
     }
   ]);
