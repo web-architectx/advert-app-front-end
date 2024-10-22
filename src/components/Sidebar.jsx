@@ -1,56 +1,40 @@
-import React from 'react'
-import { RiDashboardHorizontalFill } from "react-icons/ri";
+import React from 'react';
 import { MdNavigateNext } from "react-icons/md";
 import { SiSimpleanalytics } from "react-icons/si";
 import { Link } from 'react-router-dom';
 import { RiAdvertisementFill } from "react-icons/ri";
+import { GrOverview } from "react-icons/gr";
 
-
-
-{/* get rid of the overview */ }
 const Sidebar = () => {
   return (
-    <>
-      {/* <div className='flex flex-col'> */}
-      <div className='flex flex-row '>
-        <div className='flex flex-row'>
-
-          <div className="div bg-white  border-shadow h-[100vh] w-[15vw] ">
-            <Link to="settings" className='flex flex-row mt-[100px] gap-4 items-center ml-4'>
-              <SiSimpleanalytics size={27} />
-              <span className='text-[18px]'>Analytics</span>
-              <MdNavigateNext size={30} />
+    <div className="flex flex-col h-screen w-[15vw] bg-gray-800 text-white shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-8 text-center">Dashboard</h2>
+      <div className="flex-grow">
+        <ul className="space-y-6">
+          <li>
+            <Link to="/" className="flex items-center p-2 transition duration-300 rounded-lg hover:bg-gray-700">
+              <GrOverview size={30} className="mr-3" />
+              Overview
             </Link>
-            {/* <hr /> */}
-            <div className='flex flex-row mt-[20px] gap-4 ml-4' >
-              < RiAdvertisementFill 
-              size={27} />
-              <span className='text-[20px]'>Adverts</span>
-              <MdNavigateNext size={30} className='' />
-            </div>
-            <div className='flex flex-row mt-[20px] gap-4' >
-              <SiSimpleanalytics size={27} />
-              <span className='text-[20px]'>Dashboard</span>
-              <MdNavigateNext size={30} className='' />
-            </div>
-            <div>
-            <select>
-        <option value="By the way" className='w-[120px] bg-teal-300'>BTW</option>
-        <option value="Talk to you later">TTYL</option>
-        <option value="To be honest">TBH</option>
-        <option value=" I don’t know">IDK</option>
-    </select>
-            </div>
-          </div>
-          <div className='vertical-line h-[100vh] border-l-[0.5px] border-dotted bg-emerald-900'>
-          </div>
-        </div>
-
+          </li>
+          <li>
+            <Link to="adverts" className="flex items-center p-2 transition duration-300 rounded-lg hover:bg-gray-700">
+              <RiAdvertisementFill size={30} className="mr-3" />
+              Adverts
+            </Link>
+          </li>
+        </ul>
+        <Link to="settings" className="flex items-center p-2 mt-8 transition duration-300 rounded-lg hover:bg-gray-700">
+          <SiSimpleanalytics size={27} className="mr-3" />
+          <span>Analytics</span>
+          <MdNavigateNext size={20} className="ml-auto" />
+        </Link>
       </div>
-      {/* hhh */}
-      {/* </div> */}
-    </>
-  )
-}
+      <div className="mt-8 text-center">
+        <p className="text-sm">© 2024 Your Company</p>
+      </div>
+    </div>
+  );
+};
 
-export default Sidebar
+export default Sidebar;
