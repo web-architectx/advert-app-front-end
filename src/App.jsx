@@ -8,10 +8,17 @@ import {
 } from "react-router-dom";
 import Home from './pages/home';
 import About from './pages/about';
-import DashboardLayout from './layouts/DashboardLayout';
+import DashboardLayout from '../src/layouts/DashboardLayout';
+// import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
-import Password from './pages/dashboard/settings/password/Password';
+import Adverts from './pages/dashboard/advert';
+import Login from './pages/dashboard/auth/Login';
+import Register from './pages/dashboard/auth/Register';
+import Advertst from './pages/dashboard/advert/Advertst';
+import AdvertEdit from './pages/dashboard/advert/AdvertEdit';
+// import Adverts from '../pages/dashboard/ads'
+// import Password from './pages/dashboard/settings/password/Password';
 
 function App() {
 
@@ -24,24 +31,57 @@ function App() {
       path: "/about",
       element: <About />
     },
+    {
+      path: "login",
+      element: <Login />,
+         
+    },
+    {
+      path: "add-advert",
+      element: <Advertst />,
+         
+    },
+    {
+      path: "register",
+      element: <Register />,
+         
+    },
     // {
     //   path: "/dashboard/overview",
     //   element: <About />
     // },
     {
       path: "/dashboard",
-      element: <DashboardLayout />,
+      element: <DashboardLayout/>,
+       
       children: [
         {
           index: true,
-          // path:"overview",
+          path:"overview",
           element: <Overview />
+        },
+        {
+          // index:true,
+          path: "adverts",
+          // element: <Adverts/>,
+          element: <Adverts/>
+             
+        
+        },
+        {
+          // index:true,
+          path: "adverts/edit",
+          // element: <Adverts/>,
+          element: <AdvertEdit/>
+             
+        
         },
         {
           path: "settings",
           element: <Settings />,
              
         }
+       
       ]
     }
   ]);

@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <RootLayout>
         <div>
-      home page
+
     </div>
     </RootLayout>
   )
