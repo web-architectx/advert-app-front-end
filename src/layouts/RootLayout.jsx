@@ -9,7 +9,10 @@ const RootLayout = () => {
     <div>
       {/* <Navbar/> */}
       <Navbar/>
+      <main>
       <Outlet/>
+      </main>
+     
       <Footer/>
     </div>
   )

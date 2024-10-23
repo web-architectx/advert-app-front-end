@@ -16,11 +16,12 @@ import Adverts from './pages/dashboard/advert';
 import Login from './pages/dashboard/auth/Login';
 import Register from './pages/dashboard/auth/Register';
 import Advertst from './pages/dashboard/advert/Advertst';
- 
+
 import ProductDetails from '../User/product/ProductDetails';
- 
+
 import AdvertEdit from './pages/dashboard/advert/AdvertEdit';
- 
+import RootLayout from './layouts/RootLayout';
+
 // import Adverts from '../pages/dashboard/ads'
 // import Password from './pages/dashboard/settings/password/Password';
 
@@ -29,67 +30,80 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />
+      element: <RootLayout />,
+
+      children: [
+        {
+          index: true,
+          // path: "home",
+          element: <Home />
+        },
+        {
+          path: "/about",
+          element: <About />
+        },
+        {
+          path: "/single/product",
+          element: <ProductDetails />
+        },
+        {
+          path: "login",
+          element: <Login />,
+
+        },
+        {
+          path: "add-advert",
+          element: <Advertst />,
+
+        },
+        {
+          path: "register",
+          element: <Register />,
+
+        },
+      ]
     },
-    {
-      path: "/about",
-      element: <About />
-    },
-    {
-      path: "/single/product",
-      element: <ProductDetails />
-    },
-    {
-      path: "login",
-      element: <Login />,
-         
-    },
-    {
-      path: "add-advert",
-      element: <Advertst />,
-         
-    },
-    {
-      path: "register",
-      element: <Register />,
-         
-    },
+    // {
+    //   path: "/",
+    //   element: <Home />
+    // },
+
     // {
     //   path: "/dashboard/overview",
     //   element: <About />
     // },
     {
       path: "/dashboard",
-      element: <DashboardLayout/>,
-       
+      element: <DashboardLayout />,
+
       children: [
         {
           index: true,
-          path:"overview",
+          path: "overview",
           element: <Overview />
         },
         {
           // index:true,
           path: "adverts",
           // element: <Adverts/>,
-          element: <Adverts/>
-             
-        
+          element: <Adverts />
+
+
         },
         {
           // index:true,
           path: "adverts/edit",
           // element: <Adverts/>,
-          element: <AdvertEdit/>
-             
-        
+          element: <AdvertEdit />
+
+
         },
         {
           path: "settings",
           element: <Settings />,
-             
+
         }
-       
+
       ]
     }
   ]);
