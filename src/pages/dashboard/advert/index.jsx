@@ -106,8 +106,8 @@ const Adverts = () => {
                 <div key={advert.id} className="bg-white h-[350px] w-full rounded-lg shadow-md overflow-hidden">
                   {/* Image Section */}
                   <a href="#" className="block">
-                    <img 
-                      src={advert.imageUrl || Picture} 
+                    <img
+                      src={advert.imageUrl || Picture}
                       alt={advert.title}
                       className="w-full h-[200px] object-cover" // Adjusted height for grid images
                     />
@@ -118,9 +118,9 @@ const Adverts = () => {
                     <h3 className="text-lg font-semibold">{advert.title || "Great product name goes here"}</h3>
                     <p className="text-gray-600">Price: ${advert.price || "N/A"}</p>
                     <div className="mt-4 flex flex-row gap-2 space-x-2">
-                    <FaEye size={20} className='text-blue-500' />
-                    <FaPen size={20} className='text-green-500' />
-                    <MdDelete size={25} className='text-red-500' />
+                      <FaEye size={20} className='text-blue-500' />
+                      <FaPen size={20} className='text-green-500' />
+                      <MdDelete size={25} className='text-red-500' />
                     </div>
                   </div>
                 </div>
@@ -174,10 +174,10 @@ const Adverts = () => {
                         <p className="text-success">Free Delivery</p>
                         <br />
                         <p className=''>
-                          <a href="#" className="btn btn-block"><FaEye size={40} className='text-blue-700'/></a>
+                          <a href="#" className="btn btn-block"><FaEye size={40} className='text-blue-700' /></a>
                           <a href="#" className="btn btn-light btn-block">
                             <i className="fa fa-heart"></i>
-                            <span className="text"><FaPen size={35} className='text-green-500'/></span>
+                            <span className="text"><FaPen size={35} className='text-green-500' /></span>
                           </a>
                           <a href="#" className="btn btn-light btn-block">
                             <i className="fa fa-heart"></i>
