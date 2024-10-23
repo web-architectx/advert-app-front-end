@@ -104,7 +104,8 @@ const Register = () => {
                         type="submit"
                         className="w-full bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out font-semibold"
                     >
-                        {loading ? "loaing" : "Register"}
+                        {/* {loading ? "loading" : "Register"} */}
+                        {/* {console.log('you clicked me')} */}
                         Register
                     </button>
                 </form>

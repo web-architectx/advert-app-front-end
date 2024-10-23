@@ -13,7 +13,7 @@ const Sidebar = () => {
       <div className="flex-grow ">
         <ul className="space-y-6">
           <li>
-            <Link to="/" className="flex items-center text-white no-underline	  p-2 transition duration-300 rounded-lg hover:bg-gray-700">
+            <Link to="overview" className="flex items-center text-white no-underline	  p-2 transition duration-300 rounded-lg hover:bg-gray-700">
               <GrOverview size={30} className="mr-3" />
               Overview
             </Link>

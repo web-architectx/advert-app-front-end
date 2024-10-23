@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className='flex flex-row mt-4 gap-4'>
           <IoMdSettings size={30} />
           <PiBellRinging size={30} />
-          <RiUserFill size={30} />
+          {/* <RiUserFill size={30} /> */}
         </div>
         
         {/* Profile image that toggles the small profile */}

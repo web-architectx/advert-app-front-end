@@ -4,9 +4,22 @@ import { FcGoogle } from "react-icons/fc";
 
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { apiSignIn } from '../../../services/auth';
 
 const Login = () => {
-    const handleSubmit = async (event)=>{
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const email = formData.get("email")
+        const password = formData.get("password");
+        console.log("email :", email, "password :", password);
+
+        const response = await apiSignIn({ email, password });
+        // console.log(response.data);
+        if(response.status===200){
+            localStorage.setItem("token",response.data.accessToken)
+        }
 
     }
     return (
@@ -15,13 +28,14 @@ const Login = () => {
                 <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Login to Your Account</h2>
 
                 {/* Email/Password Login Form */}
-                <form onClick={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label className="block text-gray-700 font-semibold">Email</label>
                         <input
                             type="email"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-lg"
                             placeholder="Enter your email"
+                            name='email'
                         />
                     </div>
 
@@ -31,13 +45,14 @@ const Login = () => {
                             type="password"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-lg"
                             placeholder="Enter your password"
+                            name='password'
                         />
                     </div>
 
                     <div className="flex items-center justify-between">
                         <label className="flex items-center text-gray-600">
-                            <input type="checkbox" className="form-checkbox text-teal-600" />
-                            <span className="ml-2 text-sm">Remember me</span>
+                            {/* <input type="checkbox" className="form-checkbox text-teal-600" />
+                            <span className="ml-2 text-sm">Remember me</span> */}
                         </label>
                         <a href="#" className="text-sm text-teal-600 hover:underline">Forgot Password?</a>
                     </div>

@@ -16,7 +16,11 @@ import Adverts from './pages/dashboard/advert';
 import Login from './pages/dashboard/auth/Login';
 import Register from './pages/dashboard/auth/Register';
 import Advertst from './pages/dashboard/advert/Advertst';
+ 
 import ProductDetails from '../User/product/ProductDetails';
+ 
+import AdvertEdit from './pages/dashboard/advert/AdvertEdit';
+ 
 // import Adverts from '../pages/dashboard/ads'
 // import Password from './pages/dashboard/settings/password/Password';
 
@@ -69,6 +73,14 @@ function App() {
           path: "adverts",
           // element: <Adverts/>,
           element: <Adverts/>
+             
+        
+        },
+        {
+          // index:true,
+          path: "adverts/edit",
+          // element: <Adverts/>,
+          element: <AdvertEdit/>
              
         
         },
