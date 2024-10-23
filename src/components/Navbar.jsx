@@ -31,7 +31,7 @@ const Navbar = () => {
   }, [isProfileOpen]);
 
   return (
-    <div className='h-[15vh] w-[84.9vw] bg-white border-shadow flex flex-row justify-between left-0 right-0 justify-self-end fixed'>
+    <div className='h-[15vh] w-[80.7vw] bg-white border-shadow flex flex-row justify-between left-0 right-0 justify-self-end fixed'>
         {/* <div className=' h-[15vh]  w-[84.9vw] bg-white border-shadow flex flex-row justify-between left-0 right-0 fixed justify-self-end'> */}
 
       {/* Left section with menu icon and search */}

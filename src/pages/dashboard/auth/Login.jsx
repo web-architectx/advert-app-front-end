@@ -6,13 +6,16 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const handleSubmit = async (event)=>{
+
+    }
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
             <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 overflow-auto">
                 <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Login to Your Account</h2>
 
                 {/* Email/Password Login Form */}
-                <form className="space-y-6">
+                <form onClick={handleSubmit} className="space-y-6">
                     <div>
                         <label className="block text-gray-700 font-semibold">Email</label>
                         <input
