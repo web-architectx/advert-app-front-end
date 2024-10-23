@@ -6,15 +6,15 @@ import Navbar from '../components/Navbar'
 const DashboardLayout = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {/* <div className='flex flex-row bg-white  '> */}
       <div className='flex flex-row bg-gray-100  '>
-      <Sidebar/>
-      <div className='mt-[15vh]'>
-      <div className='w-[80vw]' >content goes hhere</div>
-      <Outlet/>
-      </div>
-      
+        <Sidebar />
+        <div className='mt-[15vh]'>
+          <div className='w-[80vw]' >content goes here</div>
+          <Outlet />
+        </div>
+
       </div>
     </div>
   )
