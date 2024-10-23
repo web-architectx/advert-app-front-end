@@ -8,7 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col h-screen w-[18vw] bg-gray-800 text-white shadow-lg p-6">
+    <div className="flex flex-col h-screen w-[18.4vw] bg-gray-800 text-white shadow-lg p-6">
       <h2 className="text-2xl font-bold mb-8 text-center">Dashboard</h2>
       <div className="flex-grow ">
         <ul className="space-y-6">
@@ -38,7 +38,7 @@ const Sidebar = () => {
           className="flex items-center w-full p-3 mt-4 bg-red-600 text-white rounded-lg transition duration-300 hover:bg-red-700"
           onClick={() => console.log('Logging out...')}
         >
-          <FiLogOut size={25} className="mr-3" />
+          <FiLogOut size={25} className="mr-3 " />
           Logout
         </button>
       </div>
