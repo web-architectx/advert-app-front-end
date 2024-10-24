@@ -9,6 +9,7 @@ import { CiGrid41 } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { apiGetAdverts } from '../../../services/advert';
 
 const ITEMS_PER_PAGE_GRID = 3; // Number of adverts per page for grid view
 const ITEMS_PER_PAGE_LIST = 2; // Number of adverts per page for list view
@@ -21,7 +22,8 @@ const Products = () => {
 
   const getAdverts = async () => {
     try {
-      const response = await axios.get(`https://library-app-mk1q.onrender.com/library`);
+      const response = await apiGetAdverts();
+      // const response = await axios.get(`https://library-app-mk1q.onrender.com/library`);
       setAdverts(response.data);
     } catch (error) {
       console.error("Error fetching adverts:", error);

@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Swal from 'sweetalert2';
+// import withReactContent from 'sweetalert2-react-content';
+// import withReactContent from 'sweetalert2-react-content'
+// import withReactContent from 'sweetalert2-re'
+import { apiPostAdverts } from '../../../services/advert';
+
+// const MySwal = withReactContent(Swal);
 
 function PostAdvertModal() {
   const [show, setShow] = useState(false);
@@ -11,8 +18,13 @@ function PostAdvertModal() {
     price: '',
     category: '',
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setFormData({ title: '', description: '', image: null, price: '', category: '' }); // Reset form
+  };
+  
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
@@ -24,11 +36,51 @@ function PostAdvertModal() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Form submission logic (e.g., sending data to a backend)
-  };
+    setLoading(true); // Set loading state
+
+    const data = new FormData();
+    data.append('title', formData.title);
+    data.append('description', formData.description);
+    data.append('image', formData.image);
+    data.append('price', formData.price);
+    data.append('category', formData.category);
+
+    const token = localStorage.getItem("token");
+
+    try {
+        const response = await apiPostAdverts(data, token); // Pass token to the API function
+
+        // Check if the response is OK (status 200-299)
+        if (response.ok) {  
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Advert posted successfully!',
+            });
+            handleClose(); // Close modal after successful submission
+        } else {
+            // Handle non-200 responses
+            const result = await response.json(); // Parse the error response
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: result.message || 'Failed to post advert. Please try again.',
+            });
+        }
+    } catch (error) {
+        // Generic error handling
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An error occurred while posting the advert.',
+        });
+    } finally {
+        setLoading(false); // Reset loading state
+    }
+};
+
 
   return (
     <>
@@ -120,17 +172,8 @@ function PostAdvertModal() {
                 <option value="services">Services</option>
                 <option value="home">Home & Garden</option>
                 <option value="automotive">Automotive</option>
-                {/* Add more categories as needed */}
               </select>
             </div>
-
-            {/* Submit Button */}
-            {/* <button
-              type="submit"
-              className="w-full bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out"
-            >
-              Post Advert
-            </button> */}
           </form>
         </Modal.Body>
 
@@ -138,13 +181,14 @@ function PostAdvertModal() {
           <Button variant="secondary" onClick={handleClose} className='w-1/5 h-14'>
             Close
           </Button>
-          {/* <Button variant="primary">Understood</Button> */}
-          <button
-              type="submit"
-              className="w-1/5  bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out"
-            >
-              Post Advert
-            </button>
+          <Button 
+            variant="primary"
+            onClick={handleSubmit}
+            className="w-1/5 bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out"
+            disabled={loading} // Disable while loading
+          >
+            {loading ? 'Posting...' : 'Post Advert'}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
