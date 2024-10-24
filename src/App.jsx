@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from '../User/home';
+import Home from './pages/user/home';
 import About from './pages/about';
 import DashboardLayout from '../src/layouts/DashboardLayout';
 // import DashboardLayout from './layouts/DashboardLayout';
@@ -17,10 +17,14 @@ import Login from './pages/dashboard/auth/Login';
 import Register from './pages/dashboard/auth/Register';
 import Advertst from './pages/dashboard/advert/Advertst';
 
-import ProductDetails from '../User/product/ProductDetails';
+import ProductDetails from '../src/pages/user/product/ProductDetails';
 
 import AdvertEdit from './pages/dashboard/advert/AdvertEdit';
 import RootLayout from './layouts/RootLayout';
+import Category from './pages/user/category';
+import ProductDetail from './pages/user/product/ProductDetails';
+import SignUpModal from './pages/dashboard/auth/component/SignUpModal';
+import SignInModal from './pages/dashboard/auth/component/SIgnInModal';
 
 // import Adverts from '../pages/dashboard/ads'
 // import Password from './pages/dashboard/settings/password/Password';
@@ -43,12 +47,20 @@ function App() {
           element: <About />
         },
         {
-          path: "/single/product",
-          element: <ProductDetails />
+          path: "categories",
+          element: <Category />
         },
         {
+          path: "details",
+          element: <ProductDetails />
+        },
+        // {
+        //   path: "/single/product",
+        //   element: <ProductDetails />
+        // },
+        {
           path: "login",
-          element: <Login />,
+          element: <SignInModal />,
 
         },
         {
@@ -58,11 +70,17 @@ function App() {
         },
         {
           path: "register",
-          element: <Register />,
+          element: <SignUpModal />,
 
         },
       ]
+      
     },
+    // {
+    //   // index: true,
+    //   path: "home",
+    //   element: <Home />
+    // },
     // {
     //   path: "/",
     //   element: <Home />
