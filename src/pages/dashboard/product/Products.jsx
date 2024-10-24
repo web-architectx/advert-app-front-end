@@ -2,18 +2,19 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
 import loadingGif from '../../../assets/images/loading.gif';
-import PostAdvertModal from '../../dashboard/components/PostAdvertModal';
+import PostAdvertModal from '../components/PostAdvertModal';
 import Picture from '../../../assets/images/picture.jpg';
 import { FaList } from "react-icons/fa";
 import { CiGrid41 } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { apiGetAdverts } from '../../../services/advert';
 
-const ITEMS_PER_PAGE_GRID = 6; // Number of adverts per page for grid view
+const ITEMS_PER_PAGE_GRID = 3; // Number of adverts per page for grid view
 const ITEMS_PER_PAGE_LIST = 2; // Number of adverts per page for list view
 
-const Adverts = () => {
+const Products = () => {
   const [adverts, setAdverts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,7 +22,8 @@ const Adverts = () => {
 
   const getAdverts = async () => {
     try {
-      const response = await axios.get(`https://library-app-mk1q.onrender.com/library`);
+      const response = await apiGetAdverts();
+      // const response = await axios.get(`https://library-app-mk1q.onrender.com/library`);
       setAdverts(response.data);
     } catch (error) {
       console.error("Error fetching adverts:", error);
@@ -66,19 +68,18 @@ const Adverts = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col  min-h-screen">
       <Outlet />
 
-      {/* Button positioned to the top-right */}
-      <div className="flex justify-end mb-4 px-6">
+      {/* Top section with Post Advert Modal */}
+      <div className="flex justify-end mt-4 px-6">
         <PostAdvertModal />
       </div>
 
-      <h2 className="text-2xl font-bold mb-4 px-6 mx-auto my-auto">Adverts</h2>
+      <h2 className="text-2xl font-bold mb-4 px-6 mx-auto">Adverts</h2>
 
       {/* View Toggle Buttons */}
-      <div className="mb-4 flex mx-auto my-auto space-x-2 px-6">
-        {/* Grid View Button */}
+      <div className="mb-4 flex justify-center space-x-4 px-6">
         <button
           onClick={() => setViewMode('grid')}
           className={`flex items-center px-4 py-2 rounded ${viewMode === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
@@ -87,7 +88,6 @@ const Adverts = () => {
           <span>Grid View</span>
         </button>
 
-        {/* List View Button */}
         <button
           onClick={() => setViewMode('list')}
           className={`flex items-center px-4 py-2 rounded ${viewMode === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'}`}
@@ -98,12 +98,12 @@ const Adverts = () => {
       </div>
 
       {/* Display Adverts Based on View Mode */}
-      <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 overflow-auto p-4 min-h-full">
         {viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 justify-center items-center sm:grid-cols-3  gap-6">
             {displayedAdverts.length > 0 ? (
               displayedAdverts.map((advert) => (
-                <div key={advert.id} className="bg-white h-[350px] w-full rounded-lg shadow-md overflow-hidden">
+                <div key={advert.id} className="bg-white h-[350px] w-full mx-auto my-auto rounded-lg shadow-md overflow-hidden">
                   {/* Image Section */}
                   <a href="#" className="block">
                     <img
@@ -220,4 +220,4 @@ const Adverts = () => {
   );
 };
 
-export default Adverts;
+export default Products;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PostAdvertModal from '../components/PostAdvertModal';
 
-const Advertst = () => {
+const AddProduct = () => {
      
 
     return (
@@ -18,4 +18,4 @@ const Advertst = () => {
     );
 };
 
-export default Advertst;
+export default AddProduct;
