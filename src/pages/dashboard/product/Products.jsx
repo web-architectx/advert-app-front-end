@@ -10,6 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { apiGetAdverts } from '../../../services/advert';
+import EditAdvertModal from '../components/EditAdvertModal';
 
 const ITEMS_PER_PAGE_GRID = 3; // Number of adverts per page for grid view
 const ITEMS_PER_PAGE_LIST = 2; // Number of adverts per page for list view
@@ -119,7 +120,8 @@ const Products = () => {
                     <p className="text-gray-600">Price: ${advert.price || "N/A"}</p>
                     <div className="mt-4 flex flex-row gap-2 space-x-2">
                       <FaEye size={20} className='text-blue-500' />
-                      <FaPen size={20} className='text-green-500' />
+                      <EditAdvertModal/>
+                      {/* <FaPen size={20} className='text-green-500' /> */}
                       <MdDelete size={25} className='text-red-500' />
                     </div>
                   </div>

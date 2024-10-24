@@ -1,6 +1,10 @@
 import { apiClient } from "./config"
 
 export const apiGetAdverts = async () => apiClient.get("/products?sort={%22createdAt%22%3A-1}")//get all products
+export const apiUpdateAdverts = async (productId, updateData) => {
+  const response = await apiClient.patch(`/products/${productId}`, updateData);
+  // Handle the response (e.g., check for success, extract updated data)
+}; 
 
 export const apiPostAdverts = async (formData, token) => {
     try {
