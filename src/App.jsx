@@ -1,45 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/user/home';
 import About from './pages/about';
-import DashboardLayout from '../src/layouts/DashboardLayout';
-// import DashboardLayout from './layouts/DashboardLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 import Overview from './pages/dashboard/overview';
 import Settings from './pages/dashboard/settings';
-import Adverts from './pages/dashboard/advert';
 import Login from './pages/dashboard/auth/Login';
-import Register from './pages/dashboard/auth/Register';
-import Advertst from './pages/dashboard/advert/Advertst';
 
 import ProductDetails from '../src/pages/user/product/ProductDetails';
-
-import AdvertEdit from './pages/dashboard/advert/AdvertEdit';
 import RootLayout from './layouts/RootLayout';
 import Category from './pages/user/category';
-import ProductDetail from './pages/user/product/ProductDetails';
 import SignUpModal from './pages/dashboard/auth/component/SignUpModal';
-import SignInModal from './pages/dashboard/auth/component/SIgnInModal';
-
-// import Adverts from '../pages/dashboard/ads'
-// import Password from './pages/dashboard/settings/password/Password';
+import AuthGuard from '../src/layouts/user/Components/AuthGuard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Products from './pages/dashboard/product/Products';
 
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
-
       children: [
         {
           index: true,
-          // path: "home",
           element: <Home />
         },
         {
@@ -54,78 +42,67 @@ function App() {
           path: "details",
           element: <ProductDetails />
         },
-        // {
-        //   path: "/single/product",
-        //   element: <ProductDetails />
-        // },
         {
           path: "login",
-          element: <SignInModal />,
-
+          element: <Login />,
         },
         {
-          path: "add-advert",
-          element: <Advertst />,
-
+          path: "add/product",
+          element: <Products />,
         },
         {
           path: "register",
           element: <SignUpModal />,
-
         },
       ]
-      
     },
-    // {
-    //   // index: true,
-    //   path: "home",
-    //   element: <Home />
-    // },
-    // {
-    //   path: "/",
-    //   element: <Home />
-    // },
-
-    // {
-    //   path: "/dashboard/overview",
-    //   element: <About />
-    // },
     {
       path: "/dashboard",
       element: <DashboardLayout />,
-
       children: [
         {
           index: true,
           path: "overview",
-          element: <Overview />
+          element: (
+            <AuthGuard>
+              <Overview />
+            </AuthGuard>
+          )
         },
         {
-          // index:true,
-          path: "adverts",
-          // element: <Adverts/>,
-          element: <Adverts />
-
-
+          path: "products",
+          element: (
+            <AuthGuard>
+              <Products />
+            </AuthGuard>
+          )
         },
-        {
-          // index:true,
-          path: "adverts/edit",
-          // element: <Adverts/>,
-          element: <AdvertEdit />
-
-
-        },
+        // {
+        //   path: "products/edit",
+        //   element: (
+        //     <AuthGuard>
+        //       <ProductEdit />
+        //     </AuthGuard>
+        //   )
+        // },
         {
           path: "settings",
-          element: <Settings />,
-
+          element: (
+            <AuthGuard>
+              <Settings />
+            </AuthGuard>
+          )
         }
-
       ]
     }
   ]);
-  return <RouterProvider router={router} />
+
+  return (
+    <>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
-export default App
+export default App;
