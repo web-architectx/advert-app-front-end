@@ -1,10 +1,42 @@
 import { apiClient } from "./config"
 
-export const apiGetAdverts = async () => apiClient.get("/products?sort={%22createdAt%22%3A-1}")//get all products
-export const apiUpdateAdverts = async (productId, updateData) => {
-  const response = await apiClient.patch(`/products/${productId}`, updateData);
-  // Handle the response (e.g., check for success, extract updated data)
-}; 
+export const apiGetAdverts = async () => apiClient.get("/products/")//get all products
+
+
+// export const apiUpdateAdverts = async (productId, updateData) => {
+//   const response = await apiClient.patch(`/products/${productId}`, updateData);
+//   // Handle the response (e.g., check for success, extract updated data)
+// }; 
+// export const apiDeleteAdvert = async (productId) => {
+//   const response = await apiClient.delete(`/products/${productId}`);
+//   return response;  
+// };
+
+
+export const apiGetAdvertById = async (productId) => {
+  try {
+    const response = await apiClient.get(`/products/${productId}`);
+    return response.data; // Return the data of the product
+  } catch (error) {
+    console.error("Error fetching advert by ID:", error);
+    throw error; // Rethrow the error if needed
+  }
+};
+
+export const apiDeleteAdvert = async (advertId) => {
+  const token = localStorage.getItem('token'); // Replace with your method of retrieving the token
+  return await apiClient.delete(`/products/${advertId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+export const apiUpdateAdverts = async (advertId, data) => {
+  return await apiClient.patch(`/adverts/${advertId}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
 
 export const apiPostAdverts = async (formData, token) => {
     try {

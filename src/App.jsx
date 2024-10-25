@@ -19,6 +19,12 @@ import AuthGuard from '../src/layouts/user/Components/AuthGuard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Products from './pages/dashboard/product/Products';
+import SingleProduct from './pages/dashboard/product/SingleProduct';
+import 'react-responsive-modal/styles.css';
+import Categories from './pages/user/category';
+import AllProducts from './pages/user/product';
+import Register from './pages/dashboard/auth/Register';
+
 
 function App() {
   const router = createBrowserRouter([
@@ -35,11 +41,19 @@ function App() {
           element: <About />
         },
         {
-          path: "categories", //all categories
-          element: <Category />
+          path: "products", //all products
+          element: <AllProducts />
         },
+        // {
+        //   path: "categories", //all categories
+        //   element: <Categories />
+        // },
+        // {
+        //   path: "/products",
+        //   element: <ProductDetails />
+        // },
         {
-          path: "product:id", //to view a single product
+          path: "/products/:productId", //to view a single product
           element: <ProductDetails />
         },
         {
@@ -47,13 +61,17 @@ function App() {
           element: <Login />,
         },
         {
+          path: "register",
+          element: <Register />,
+        },
+        {
           path: "add/product",
           element: <Products />,
         },
-        {
-          path: "register",
-          element: <SignUpModal />,
-        },
+        // {
+        //   path: "register",
+        //   element: <SignUpModal />,
+        // },
       ]
     },
     {
@@ -74,6 +92,14 @@ function App() {
           element: (
             <AuthGuard>
               <Products />
+            </AuthGuard>
+          )
+        },
+        {
+          path: "products/:id",
+          element: (
+            <AuthGuard>
+              <SingleProduct />
             </AuthGuard>
           )
         },
