@@ -57,15 +57,16 @@ const ProductDetails = ({ token }) => {
       {/* Right Column */}
       <div className="flex-1">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">{product.title}</h1>
-        <p className="text-lg text-gray-700 mb-4">GHC {product.price}</p>
-        <p className="text-gray-600 mb-4">{product.description}</p>
-        
         <h2 className="text-2xl font-semibold text-gray-800 mb-2">Details</h2>
+        <p className="text-lg text-gray-700 mb-4">GHC {product.price}</p>
+        <p className="text-gray-600 mb-4 text-justify">{product.description}</p>
+        
+        {/* <h2 className="text-2xl font-semibold text-gray-800 mb-2">Details</h2>
         <ul className="list-disc list-inside text-gray-600 mb-8">
           <li><strong>Category:</strong> {product.category}</li>
           <li><strong>Rating:</strong> {product.rating} / 5</li>
           <li><strong>Location:</strong> {product.location}</li>
-        </ul>
+        </ul> */}
 
         {/* Vendor Contact Section */}
         <div className="mt-12">
