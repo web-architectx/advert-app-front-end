@@ -32,7 +32,7 @@ const Home = () => {
               <img
                 src={category.img}
                 alt={category.title}
-                className='w-[120px] h-[120px] rounded-[10px] object-cover shadow-md'
+                className='w-[150px] h-[150px] rounded-[10px] object-cover shadow-md'
               />
               <h1 className='text-lg font-semibold mt-4 text-gray-700'>
                 {category.title}

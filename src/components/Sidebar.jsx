@@ -46,24 +46,24 @@ const Sidebar = () => {
             <div className="flex-grow ">
                 <ul className="space-y-6">
                     <li>
-                        <Link to="overview" className="flex items-center text-white no-underline p-2 transition duration-300 rounded-lg hover:bg-gray-700">
+                        <Link to="overview" className="flex items-center text-white no-underline p-2 transition duration-300 rounded-lg hover:bg-lime-700">
                             <GrOverview size={30} className="mr-3" />
                             Overview
                         </Link>
                     </li>
                     <li>
-                        <Link to="/dashboard/products" className="flex items-center p-2 text-white transition duration-300 no-underline rounded-lg hover:bg-gray-700">
+                        <Link to="/dashboard/products" className="flex items-center p-2 text-white transition duration-300 no-underline rounded-lg hover:bg-teal-100">
                             <RiProductHuntFill 
                             size={30} className="mr-3"/>
                             Products
                         </Link>
                     </li>
                     <li>
-                        <Link to="adverts" className="flex items-center p-2 text-white transition duration-300 no-underline rounded-lg hover:bg-gray-700">
+                        <Link to="adverts" className="flex items-center p-2 text-white transition duration-300 no-underline rounded-lg hover:bg-teal-700">
                         <BiCategory 
 
                             size={30} className="mr-3"/>
-                            Products
+                            Categories
                         </Link>
                     </li>
                 </ul>

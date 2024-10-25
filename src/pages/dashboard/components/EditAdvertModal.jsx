@@ -2,14 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
-// import withReactContent from 'sweetalert2-react-content';
-// import withReactContent from 'sweetalert2-react-content'
-// import withReactContent from 'sweetalert2-re'
-import { apiPostAdverts } from '../../../services/advert';
+import { apiUpdateAdverts } from '../../../services/advert'; // Import the update function
+import { FaPen } from "react-icons/fa";
 
-// const MySwal = withReactContent(Swal);
-
-function PostAdvertModal() {
+function EditAdvertModal({ productId }) { // Accept productId as a prop
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -43,54 +39,48 @@ function PostAdvertModal() {
     const data = new FormData();
     data.append('title', formData.title);
     data.append('description', formData.description);
-    data.append('image', formData.image);
+    if (formData.image) { // Only append image if it exists
+      data.append('image', formData.image);
+    }
     data.append('price', formData.price);
     data.append('category', formData.category);
 
     const token = localStorage.getItem("token");
 
     try {
-        const response = await apiPostAdverts(data, token); // Pass token to the API function
+        const response = await apiUpdateAdverts(productId, data); // Use the update function
 
-        // Check if the response is OK (status 200-299)
-        if (response.status===200||response.status===201) {  
+        if (response.status === 200 || response.status === 204) {  
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
-                toast: true, 
-                text: `${response.data}`,
-                position: 'top-end'
-                // text: 'Advert posted successfully!',
-                
-            }
-          );
+                text: 'Advert updated successfully!',
+            });
             handleClose(); // Close modal after successful submission
         } else {
-            // Handle non-200 responses
             const result = await response.json(); // Parse the error response
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
-                text: result.message || 'Failed to post advert. Please try again.',
+                text: result.message || 'Failed to update advert. Please try again.',
             });
         }
     } catch (error) {
-        // Generic error handling
         Swal.fire({
             icon: 'error',
             title: 'Error!',
-            text: 'An error occurred while posting the advert.',
+            text: 'An error occurred while updating the advert.',
         });
     } finally {
         setLoading(false); // Reset loading state
     }
 };
 
-
   return (
     <>
       <Button variant="success" onClick={handleShow}>
-        Add Advert
+      <FaPen  />
+
       </Button>
 
       <Modal
@@ -101,7 +91,7 @@ function PostAdvertModal() {
         size='lg'
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add Advert</Modal.Title>
+          <Modal.Title>Edit Advert</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -143,7 +133,6 @@ function PostAdvertModal() {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 accept="image/*"
-                required
               />
             </div>
 
@@ -192,7 +181,7 @@ function PostAdvertModal() {
             className="w-1/5 bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out"
             disabled={loading} // Disable while loading
           >
-            {loading ? 'Posting...' : 'Post Advert'}
+            {loading ? 'Updating...' : 'Update Advert'}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -200,4 +189,4 @@ function PostAdvertModal() {
   );
 }
 
-export default PostAdvertModal;
+export default EditAdvertModal;

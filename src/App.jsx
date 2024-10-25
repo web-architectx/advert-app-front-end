@@ -35,11 +35,11 @@ function App() {
           element: <About />
         },
         {
-          path: "categories",
+          path: "categories", //all categories
           element: <Category />
         },
         {
-          path: "details",
+          path: "product:id", //to view a single product
           element: <ProductDetails />
         },
         {
