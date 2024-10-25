@@ -13,15 +13,21 @@ export const apiGetAdverts = async () => apiClient.get("/products/")//get all pr
 // };
 
 
+ 
+
 export const apiGetAdvertById = async (productId) => {
   try {
-    const response = await apiClient.get(`/products/${productId}`);
-    return response.data; // Return the data of the product
+    const token = localStorage.getItem("token"); // or your token source
+    const response = await apiClient.get(`/products/${productId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
   } catch (error) {
     console.error("Error fetching advert by ID:", error);
-    throw error; // Rethrow the error if needed
+    throw error;
   }
 };
+
 
 export const apiDeleteAdvert = async (advertId) => {
   const token = localStorage.getItem('token'); // Replace with your method of retrieving the token

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { apiGetAdverts } from '../../../services/advert'; // Import the API call
-import cars from '../../../assets/images/car.jpg'; // Placeholder image if needed
-import loadingGif from '../../../assets/images/Dual Ring@1x-1.0s-200px-200px.gif'; // Import your loading GIF
+import { apiGetAdverts } from '../../../services/advert';
+import loadingGif from '../../../assets/images/Dual Ring@1x-1.0s-200px-200px.gif';
+import { toast } from 'react-toastify';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,14 +11,14 @@ const AllProducts = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
 
-  // Fetch products when the component mounts
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await apiGetAdverts(); // Fetch products from the API
+        const response = await apiGetAdverts();
         setProducts(response.data); // Assuming the data is in response.data
       } catch (err) {
         setError('Failed to fetch products.');
+        toast.warning('Failed to fetch products.');
         console.error('Error fetching products:', err);
       } finally {
         setLoading(false);
@@ -28,7 +28,6 @@ const AllProducts = () => {
     fetchProducts();
   }, []);
 
-  // Filter products based on search term and selected category
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All Categories' || product.category === selectedCategory;
@@ -36,12 +35,12 @@ const AllProducts = () => {
   });
 
   if (loading) return <img src={loadingGif} alt="Loading..." className="mx-auto mt-12" />;
-  if (error) return <div>{error}</div>;
+  if (error) return <div className="text-center text-red-500 mt-4">{error}</div>;
 
   return (
     <div className='flex flex-col py-4 px-4'>
       <h2 className='text-4xl font-bold mt-12 text-gray-800 border-b-2 border-gray-300 pb-2'>
-        Vehicles
+        All Adverts
       </h2>
 
       {/* Filters and Search */}
@@ -81,7 +80,7 @@ const AllProducts = () => {
         {filteredProducts.map((product) => (
           <div key={product.id} className='relative bg-white rounded-lg shadow-lg p-4 hover:scale-105 transition-transform border border-gray-200'>
             <img
-              src={product.media || cars} // Use product media or a placeholder image
+              src={`https://savefiles.org/${product.image}?shareable_link=435`}
               alt={product.title}
               className='w-full h-[250px] rounded-lg object-cover shadow-md'
             />
@@ -103,7 +102,7 @@ const AllProducts = () => {
             </div>
             <Link to={`/products/${product.id}`}>
               <button className='absolute bottom-4 right-4 bg-gray-800 text-white py-2 px-4 rounded-lg'>
-                View 
+                View
               </button>
             </Link>
           </div>

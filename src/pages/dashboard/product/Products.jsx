@@ -14,7 +14,7 @@ import CreatePost from '../../../pages/dashboard/product/modal/CreatePost';
 import Car from '../../../assets/images/car.jpg'
 
 const ITEMS_PER_PAGE_GRID = 6;
-const ITEMS_PER_PAGE_LIST = 4;
+const ITEMS_PER_PAGE_LIST = 2;
 
 const Products = () => {
   const [adverts, setAdverts] = useState([]);
@@ -137,7 +137,8 @@ const Products = () => {
                 <div key={advert.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <Link to={`/products/${advert.id}`} className="block">
                     <img
-                      src={`https://savefiles.org/${advert.media}`}
+                      src={`https://savefiles.org/${advert.image}?shareable_link=435`}
+                      // src={`https://savefiles.org/secure/uploads/${advert.media}?shareable_link=435`}
                       alt={advert.title}
                       className="w-[350px] h-[170px] object-cover"
                     />
@@ -170,7 +171,8 @@ const Products = () => {
         <div className="flex">
           <Link to={`/products/${advert.id}`} className="w-1/4">
             <img
-              src={`https://savefiles.org/${advert.media}`}
+        
+              src={`https://savefiles.org/${advert.image}?shareable_link=435`}
               alt={advert.title}
               className="w-full h-auto object-cover"
             />

@@ -78,17 +78,17 @@ const Sidebar = () => {
                     <li>
                         <Link
                             to="overview"
-                            className="flex items-center p-3 text-white rounded-lg transition-colors duration-300 hover:bg-lime-700"
+                            className="flex items-center p-3 text-white rounded-lg transition-colors no-underline duration-300 hover:bg-lime-700"
                         >
                             <GrOverview size={28} className="mr-4" />
-                            <span className="text-lg font-medium">Overview</span>
+                            <span className="text-lg font-medium  selection:">Overview</span>
                         </Link>
                     </li>
 
                     <li>
                         <Link
                             to="/dashboard/products"
-                            className="flex items-center p-3 text-white rounded-lg transition-colors duration-300 hover:bg-teal-100 hover:text-teal-800"
+                            className="flex items-center no-underline p-3 text-white rounded-lg transition-colors duration-300 hover:bg-teal-100 hover:text-teal-800"
                         >
                             <RiProductHuntFill size={28} className="mr-4" />
                             <span className="text-lg font-medium">Products</span>
@@ -98,7 +98,7 @@ const Sidebar = () => {
                     <li>
                         <Link
                             to="categories"
-                            className="flex items-center p-3 text-white rounded-lg transition-colors duration-300 hover:bg-teal-700"
+                            className="flex items-center p-3 no-underline text-white rounded-lg transition-colors duration-300 hover:bg-teal-700"
                         >
                             <BiCategory size={28} className="mr-4" />
                             <span className="text-lg font-medium">Categories</span>
@@ -108,7 +108,7 @@ const Sidebar = () => {
                     <li>
                         <Link
                             to="settings"
-                            className="flex items-center p-3 text-white rounded-lg transition-colors duration-300 hover:bg-lime-600"
+                            className="flex items-center no-underline p-3 text-white rounded-lg transition-colors duration-300 hover:bg-lime-600"
                         >
                             <FiSettings size={28} className="mr-4" />
                             <span className="text-lg font-medium">Settings</span>

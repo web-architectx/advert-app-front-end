@@ -35,13 +35,13 @@ const Home = () => {
       <Hero />
       <div className='flex flex-col justify-center items-center px-4'>
         <h2 className='text-4xl font-bold mt-12 text-gray-800 border-b-2 border-gray-300 pb-2'>
-          Categories
+          TRENDING 
         </h2>
 
         <div className='flex overflow-hidden whitespace-nowrap mt-12 py-4 w-full justify-center'>
           <div className='flex flex-row gap-8 animate-marquee'>
             {specialCategories.map((category, index) => {
-              const imageUrl = category.media ? `https://savefiles.org/${category.media}?shareable_link=435` : cars; // Fallback to placeholder
+              const imageUrl = category.image ? `https://savefiles.org/${category.image}?shareable_link=435` : cars; // Fallback to placeholder
 
               console.log('Image URL:', imageUrl); // Debugging log
 
@@ -67,7 +67,7 @@ const Home = () => {
           </div>
         </div>
 
-        <h1 className='text-3xl font-bold mt-16 text-gray-800'>Hot Deals</h1>
+        <h1 className='text-3xl font-bold mt-16 text-gray-800'>LIMITED-TIME OFFERS</h1>
 
         <div className='flex flex-row pb-10 gap-8 mt-8'>
           <div className='flex-none relative'>
@@ -85,9 +85,10 @@ const Home = () => {
 
           <div className='grid grid-cols-2 gap-8'>
             {hotDeals.slice(0, 4).map((deal, index) => (
-              <Link to={`/products/${deal.id}`} key={index} className='relative'>
+              <Link to={`/products/`} key={index} className='relative'>
+              {/* <Link to={`/products/${deal.id}`} key={index} className='relative'> */}
                 <img
-                  src={deal.media || cars}
+                   src={`https://savefiles.org/${deal.image}?shareable_link=435`}
                   alt={deal.title}
                   className='w-[320px] h-[300px] rounded-lg object-cover shadow-lg transition-transform transform hover:scale-105'
                 />
