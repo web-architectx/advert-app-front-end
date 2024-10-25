@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
-import { apiUpdateAdverts } from '../../../services/advert'; // Import the update function
+import { apiUpdateAdverts, apiGetAdvertById } from '../../../services/advert'; // Import the get function
 import { FaPen } from 'react-icons/fa';
 
 function EditModal({ productId }) {
@@ -18,61 +18,82 @@ function EditModal({ productId }) {
 
   const handleClose = () => {
     setShow(false);
-    setFormData({ title: '', description: '', image: null, price: '', category: '' }); // Reset form
+    setFormData({ title: '', description: '', image: null, price: '', category: '' }); // Reset form data
   };
-  
-  const handleShow = () => setShow(true);
+
+  const handleShow = async () => {
+    setShow(true);
+    await fetchAdvert(); // Fetch data when modal opens
+  };
+
+  // Fetch existing advert data for editing
+  const fetchAdvert = async () => {
+    try {
+      const data = await apiGetAdvertById(productId);
+      setFormData({
+        title: data.title,
+        description: data.description,
+        image: null, // Initialize without an image as it's optional
+        price: data.price,
+        category: data.category,
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to load advert data.',
+      });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'image') {
-      setFormData({ ...formData, image: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ 
+      ...formData, 
+      [name]: name === 'image' ? files[0] : value 
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading state
+    setLoading(true); 
 
+    // Prepare form data
     const data = new FormData();
     data.append('title', formData.title);
     data.append('description', formData.description);
-    if (formData.image) { // Only append image if it exists
-      data.append('image', formData.image);
+    if (formData.image) {
+      data.append('image', formData.image); // Append only if image exists
     }
     data.append('price', formData.price);
     data.append('category', formData.category);
 
-    const token = localStorage.getItem('token');
-
     try {
-      const response = await apiUpdateAdverts(productId, data); // Use the update function
+      const response = await apiUpdateAdverts(productId, data); 
 
-      if (response.status === 200 || response.status === 204) {
+      if ([200, 204].includes(response.status)) {
         Swal.fire({
           icon: 'success',
           title: 'Success!',
           text: 'Advert updated successfully!',
         });
-        handleClose(); // Close modal after successful submission
+        handleClose();
       } else {
-        const result = await response.json(); // Parse the error response
+        const result = await response.json();
         Swal.fire({
           icon: 'error',
-          title: 'Error!',
-          text: result.message || 'Failed to update advert. Please try again.',
+          title: 'Update Failed',
+          text: result.message || 'An error occurred while updating the advert.',
         });
       }
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Error!',
+        title: 'Error',
         text: 'An error occurred while updating the advert.',
       });
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false); // End loading
     }
   };
 

@@ -39,10 +39,12 @@ export const apiDeleteAdvert = async (advertId) => {
 };
 
 export const apiUpdateAdverts = async (advertId, data) => {
+  const token = localStorage.getItem('token'); // Retrieve token within the function
   return await apiClient.patch(`/adverts/${advertId}`, data, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
 
 export const apiPostAdverts = async (formData, token) => {
     try {

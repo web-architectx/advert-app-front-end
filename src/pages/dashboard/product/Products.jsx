@@ -138,17 +138,19 @@ const Products = () => {
                   <Link to={`/products/${advert.id}`} className="block">
                     <img
                       src={`https://savefiles.org/${advert.image}?shareable_link=435`}
-                      // src={`https://savefiles.org/secure/uploads/${advert.media}?shareable_link=435`}
+                      
                       alt={advert.title}
-                      className="w-[350px] h-[170px] object-cover"
+                      className="w-[480px] h-[170px] object-cover"
                     />
                   </Link>
                   <div className="p-4">
                     <h3 className="text-lg font-semibold">{advert.title}</h3>
-                    <p className="text-gray-600">Price: ${advert.price}</p>
+                    {/* <p className="text-gray-600">Price: ${advert.price}</p> */}
+                    <p className="text-gray-600 line-clamp-2">${advert.description}</p>
+
                     <div className="mt-4  flex flex-row gap-2">
                     {/* <div className="mt-4 flex justify-between items-center"> */}
-                      <FaEye size={20} className="text-blue-500 cursor-pointer" />
+                      {/* <FaEye size={20} className="text-blue-500 cursor-pointer" /> */}
                       <EditAdvertModal productId={advert.id} />
                       <MdDelete
                         size={25}
@@ -181,7 +183,7 @@ const Products = () => {
             <h3 className="text-xl font-bold">{advert.title}</h3>
             <p className="text-gray-600">Price: ${advert.price}</p>
             <div className="mt-4 flex justify-between items-center">
-              <FaEye size={20} className="text-blue-500 cursor-pointer" />
+              {/* <FaEye size={20} className="text-blue-500 cursor-pointer" /> */}
               <EditAdvertModal productId={advert.id} />
               <MdDelete
                 size={25}
