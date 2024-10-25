@@ -3,7 +3,7 @@ import { FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { apiSignUp } from '../../../services/auth';
+import { apiSignUp } from '../../../../services/auth';
 
 const Register = ({ toggleModal }) => {
     const [loading, setLoading] = useState(true);
@@ -35,8 +35,8 @@ const Register = ({ toggleModal }) => {
     }
     return (
         <>
-            <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-                <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 overflow-auto">
+            {/* <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4"> */}
+                {/* <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 overflow-auto"> */}
                     <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-4 leading-tight">Create an Account</h2>
 
                     {/* Registration Form */}
@@ -141,11 +141,11 @@ const Register = ({ toggleModal }) => {
                     {/* Sign In Link */}
                     <p className="mt-4 text-center text-gray-600">
                         Already have an account?{" "}
-                        {/* <button onClick={toggleModal}>Login</button> */}
-                        <Link to="/login" className="text-teal-600 hover:underline font-semibold">Login</Link>
+                        <button onClick={toggleModal}>Login</button>
+                        {/* <Link to="/login" className="text-teal-600 hover:underline font-semibold">Login</Link> */}
                     </p>
-                </div>
-            </div>
+                {/* </div> */}
+            {/* </div> */}
         </>
     );
 };

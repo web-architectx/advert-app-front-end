@@ -3,9 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Swal from 'sweetalert2';
 import { apiUpdateAdverts } from '../../../services/advert'; // Import the update function
-import { FaPen } from "react-icons/fa";
+import { FaPen } from 'react-icons/fa';
 
-function EditAdvertModal({ productId }) { // Accept productId as a prop
+function EditModal({ productId }) {
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -45,42 +45,41 @@ function EditAdvertModal({ productId }) { // Accept productId as a prop
     data.append('price', formData.price);
     data.append('category', formData.category);
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     try {
-        const response = await apiUpdateAdverts(productId, data); // Use the update function
+      const response = await apiUpdateAdverts(productId, data); // Use the update function
 
-        if (response.status === 200 || response.status === 204) {  
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Advert updated successfully!',
-            });
-            handleClose(); // Close modal after successful submission
-        } else {
-            const result = await response.json(); // Parse the error response
-            Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: result.message || 'Failed to update advert. Please try again.',
-            });
-        }
-    } catch (error) {
+      if (response.status === 200 || response.status === 204) {
         Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'An error occurred while updating the advert.',
+          icon: 'success',
+          title: 'Success!',
+          text: 'Advert updated successfully!',
         });
+        handleClose(); // Close modal after successful submission
+      } else {
+        const result = await response.json(); // Parse the error response
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: result.message || 'Failed to update advert. Please try again.',
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'An error occurred while updating the advert.',
+      });
     } finally {
-        setLoading(false); // Reset loading state
+      setLoading(false); // Reset loading state
     }
-};
+  };
 
   return (
     <>
       <Button variant="success" onClick={handleShow}>
-      <FaPen  />
-
+        <FaPen />
       </Button>
 
       <Modal
@@ -88,7 +87,7 @@ function EditAdvertModal({ productId }) { // Accept productId as a prop
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        size='lg'
+        size="lg"
       >
         <Modal.Header closeButton>
           <Modal.Title>Edit Advert</Modal.Title>
@@ -172,10 +171,10 @@ function EditAdvertModal({ productId }) { // Accept productId as a prop
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose} className='w-1/5 h-14'>
+          <Button variant="secondary" onClick={handleClose} className="w-1/5 h-14">
             Close
           </Button>
-          <Button 
+          <Button
             variant="primary"
             onClick={handleSubmit}
             className="w-1/5 bg-teal-600 text-white py-3 rounded-lg shadow-md hover:bg-teal-700 transition-all duration-300 ease-in-out"
@@ -189,4 +188,4 @@ function EditAdvertModal({ productId }) { // Accept productId as a prop
   );
 }
 
-export default EditAdvertModal;
+export default EditModal;

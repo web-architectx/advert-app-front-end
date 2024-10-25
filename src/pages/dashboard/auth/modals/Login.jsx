@@ -3,7 +3,7 @@ import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
-import { apiSignIn } from '../../../services/auth';
+import { apiSignIn } from '../../../../services/auth';
 import { toast, ToastContainer } from 'react-toastify';  
 import 'react-toastify/dist/ReactToastify.css';  
 
@@ -60,10 +60,10 @@ const Login = ({toggleModal }) => {
 
     return (
         <>
-         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+         {/* <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6"> */}
             <ToastContainer />
 
-            <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 overflow-auto">
+            {/* <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 overflow-auto"> */}
                 <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-6">Login </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -133,11 +133,11 @@ const Login = ({toggleModal }) => {
 
                 <p className="mt-6 text-center text-gray-600">
                     Don&apos;t have an account?{" "}
-                    {/* <button onClick={toggleModal}>Sign Up</button> */}
-                    <Link to="/register" className="text-teal-600 hover:underline font-semibold">Sign up</Link>
+                    <button onClick={toggleModal}>Sign Up</button>
+                    {/* <Link to="/register" className="text-teal-600 hover:underline font-semibold">Sign up</Link> */}
                 </p>
-            </div>
-         </div>
+            {/* </div> */}
+         {/* </div> */}
         </>
     );
 };
