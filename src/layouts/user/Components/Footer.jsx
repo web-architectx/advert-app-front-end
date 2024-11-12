@@ -21,13 +21,13 @@ const Footer = () => {
         <p className='font-bold text-white text-lg'>Our Resources</p>
         <div className='flex flex-row gap-4 text-white'>
           <a href="#" className='hover:text-blue-400 transition-colors'>
-            <FaFacebookSquare size={24} />
+            <FaFacebookSquare size={24}  className='text-white'/>
           </a>
           <a href="#" className='hover:text-blue-400 transition-colors'>
-            <FaTwitter size={24} />
+            <FaTwitter size={24} className='text-white' />
           </a>
-          <a href="#" className='hover:text-blue-400 transition-colors'>
-            <FaInstagram size={24} />
+          <a href="#" className='hover:text-blue-400 transition-colors '>
+            <FaInstagram size={24} className='text-white' />
           </a>
         </div>
       </div>

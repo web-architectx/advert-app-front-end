@@ -22,7 +22,7 @@ const Sidebar = () => {
         localStorage.removeItem("token");
 
         // Show a success toast message
-        toast.success("You have successfully logged out", {
+        toast.success("You are logging out", {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: true,
@@ -35,7 +35,7 @@ const Sidebar = () => {
         // Redirect to the login page after 3 seconds
         setTimeout(() => {
             setLoading(false); // Reset loading state
-            navigate("/login");
+            navigate("/");
         }, 3000);
     };
 

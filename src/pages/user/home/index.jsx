@@ -37,7 +37,7 @@ const Home = () => {
         <h2 className='text-4xl font-bold mt-12 text-gray-800 border-b-2 border-gray-300 pb-2'>
           TRENDING 
         </h2>
-
+ 
         <div className='flex overflow-hidden whitespace-nowrap mt-12 py-4 w-full justify-center'>
           <div className='flex flex-row gap-8 animate-marquee'>
             {specialCategories.map((category, index) => {
@@ -65,7 +65,7 @@ const Home = () => {
               );
             })}
           </div>
-        </div>
+        </div> 
 
         <h1 className='text-3xl font-bold mt-16 text-gray-800'>LIMITED-TIME OFFERS</h1>
 
@@ -86,7 +86,7 @@ const Home = () => {
           <div className='grid grid-cols-2 gap-8'>
             {hotDeals.slice(0, 4).map((deal, index) => (
               <Link to={`/products/`} key={index} className='relative'>
-              {/* <Link to={`/products/${deal.id}`} key={index} className='relative'> */}
+               
                 <img
                    src={`https://savefiles.org/${deal.image}?shareable_link=435`}
                   alt={deal.title}

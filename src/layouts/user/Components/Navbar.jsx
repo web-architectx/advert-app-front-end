@@ -6,6 +6,8 @@ import SignUpModal from '../../../pages/dashboard/auth/component/SignUpModal';
 import { Modal } from 'react-responsive-modal';
 import Login from '../../../pages/dashboard/auth/modals/Login';
 import Register from '../../../pages/dashboard/auth/modals/Register';
+import { Link } from 'react-router-dom';
+
 
 
 const Navbar = () => {
@@ -19,7 +21,10 @@ const Navbar = () => {
   return (
     <>
       <div className='flex flex-row justify-between items-center bg-teal-600 h-[70px] px-4'>
+      <Link to="/" className='no-underline'> 
         <h1 className='font-bold text-3xl text-white'>Tomame</h1>
+      </Link>
+    
 
         <div className='flex items-center gap-4'>
           <button 
@@ -46,4 +51,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;  

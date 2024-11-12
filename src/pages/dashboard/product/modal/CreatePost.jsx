@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { apiPostAdverts } from '../../../../services/advert';
+import { useNavigate } from 'react-router-dom';
 
 function PostAdvertModal() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -29,7 +31,9 @@ function PostAdvertModal() {
         const data = new FormData();
         data.append('title', formData.title);
         data.append('description', formData.description);
-        data.append('image', formData.image);
+        if (formData.image) {
+            data.append('image', formData.image);
+        }
         data.append('price', formData.price);
         data.append('category', formData.category);
 
@@ -46,18 +50,21 @@ function PostAdvertModal() {
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    progress: undefined,
                 });
+                
+                // Reset form data
                 setFormData({ title: '', description: '', image: null, price: '', category: '' });
+                navigate('/dashboard/products'); // Navigate to the products page
+            
             } else {
-                toast.error('Failed to post advert. Please try again.', {
+                const errorResult = await response.json();
+                toast.error(errorResult.message || 'Failed to post advert.', {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
-                    progress: undefined,
                 });
             }
         } catch (error) {
@@ -68,7 +75,6 @@ function PostAdvertModal() {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                progress: undefined,
             });
         } finally {
             setLoading(false); // Reset loading state
@@ -158,8 +164,7 @@ function PostAdvertModal() {
                 </div>
             </form>
 
-            {/* Toast Container for displaying notifications */}
-            <ToastContainer />
+            
         </>
     );
 }

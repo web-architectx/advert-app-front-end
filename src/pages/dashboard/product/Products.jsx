@@ -13,7 +13,7 @@ import { Modal } from 'react-responsive-modal';
 import CreatePost from '../../../pages/dashboard/product/modal/CreatePost';
 import Car from '../../../assets/images/car.jpg'
 
-const ITEMS_PER_PAGE_GRID = 6;
+const ITEMS_PER_PAGE_GRID = 3;
 const ITEMS_PER_PAGE_LIST = 2;
 
 const Products = () => {
