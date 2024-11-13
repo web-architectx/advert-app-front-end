@@ -12,6 +12,8 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import CreatePost from '../../../pages/dashboard/product/modal/CreatePost';
 import Car from '../../../assets/images/car.jpg'
+import { TailSpin } from 'react-loader-spinner'
+
 
 const ITEMS_PER_PAGE_GRID = 3;
 const ITEMS_PER_PAGE_LIST = 2;
@@ -80,16 +82,25 @@ const Products = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <img src={loadingGif} alt="Loading..." className="w-16 h-16 mx-auto" />
-          <p className="text-lg mt-2">Please wait...</p>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    }}>
+      <TailSpin
+        visible={true}
+        height="80"
+        width="80"
+        color="#0D9488"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -131,14 +142,14 @@ const Products = () => {
       <div className="flex-1 overflow-auto px-4">
         {viewMode === 'grid' ? (
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ml-[160px]">
-          {/* <div className=" ml-[70px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> */}
+            {/* <div className=" ml-[70px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> */}
             {displayedAdverts.length > 0 ? (
               displayedAdverts.map((advert) => (
                 <div key={advert.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <Link to={`/products/${advert.id}`} className="block">
                     <img
                       src={`https://savefiles.org/${advert.image}?shareable_link=435`}
-                      
+
                       alt={advert.title}
                       className="w-[480px] h-[170px] object-cover"
                     />
@@ -149,7 +160,7 @@ const Products = () => {
                     <p className="text-gray-600 line-clamp-2">${advert.description}</p>
 
                     <div className="mt-4  flex flex-row gap-2">
-                    {/* <div className="mt-4 flex justify-between items-center"> */}
+                      {/* <div className="mt-4 flex justify-between items-center"> */}
                       {/* <FaEye size={20} className="text-blue-500 cursor-pointer" /> */}
                       <EditAdvertModal productId={advert.id} />
                       <MdDelete
@@ -167,38 +178,38 @@ const Products = () => {
           </div>
         ) : (
           <div className="space-y-4 ml-[160px]">
-  {displayedAdverts.length > 0 ? (
-    displayedAdverts.map((advert) => (
-      <div key={advert.id} className="bg-white rounded-lg shadow-md p-4">
-        <div className="flex">
-          <Link to={`/products/${advert.id}`} className="w-1/4">
-            <img
-        
-              src={`https://savefiles.org/${advert.image}?shareable_link=435`}
-              alt={advert.title}
-              className="w-full h-auto object-cover"
-            />
-          </Link>
-          <div className="w-3/4 pl-4">
-            <h3 className="text-xl font-bold">{advert.title}</h3>
-            <p className="text-gray-600">Price: ${advert.price}</p>
-            <div className="mt-4 flex justify-between items-center">
-              {/* <FaEye size={20} className="text-blue-500 cursor-pointer" /> */}
-              <EditAdvertModal productId={advert.id} />
-              <MdDelete
-                size={25}
-                className="text-red-500 cursor-pointer"
-                onClick={() => handleDelete(advert.id)}
-              />
-            </div>
+            {displayedAdverts.length > 0 ? (
+              displayedAdverts.map((advert) => (
+                <div key={advert.id} className="bg-white rounded-lg shadow-md p-4">
+                  <div className="flex">
+                    <Link to={`/products/${advert.id}`} className="w-1/4">
+                      <img
+
+                        src={`https://savefiles.org/${advert.image}?shareable_link=435`}
+                        alt={advert.title}
+                        className="w-full h-auto object-cover"
+                      />
+                    </Link>
+                    <div className="w-3/4 pl-4">
+                      <h3 className="text-xl font-bold">{advert.title}</h3>
+                      <p className="text-gray-600">Price: ${advert.price}</p>
+                      <div className="mt-4 flex justify-between items-center">
+                        {/* <FaEye size={20} className="text-blue-500 cursor-pointer" /> */}
+                        <EditAdvertModal productId={advert.id} />
+                        <MdDelete
+                          size={25}
+                          className="text-red-500 cursor-pointer"
+                          onClick={() => handleDelete(advert.id)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No adverts available.</p>
+            )}
           </div>
-        </div>
-      </div>
-    ))
-  ) : (
-    <p className="text-center text-gray-500">No adverts available.</p>
-  )}
-</div>
 
 
         )}
