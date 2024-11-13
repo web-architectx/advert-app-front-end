@@ -48,7 +48,23 @@ const Home = () => {
     </div>
   );
   // if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  // if (error) return <div>{error}</div>;
+  if (error) {
+    return (
+      <div className="flex flex-col justify-center items-center h-screen text-center bg-gray-100 p-4">
+        <h2 className="text-2xl font-bold text-pink-600">Oops! Something went wrong.</h2>
+        <p className="mt-2 text-lg text-gray-800">{error}</p>
+        <div className="mt-4">
+          <button
+            onClick={() => window.location.reload()} // Reloads the page
+            className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
