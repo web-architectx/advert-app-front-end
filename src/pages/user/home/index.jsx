@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { apiGetAdverts } from '../../../services/advert'; // Import the API call
-import cars from '../../../assets/images/car.jpg'; // Placeholder image
+import { apiGetAdverts } from '../../../services/advert';  
+import cars from '../../../assets/images/car.jpg';  
 import Hero from '../../../layouts/user/Components/Hero';
+import { TailSpin } from 'react-loader-spinner'
 
 const Home = () => {
   const [hotDeals, setHotDeals] = useState([]);
@@ -27,7 +28,26 @@ const Home = () => {
     fetchProducts();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh' 
+    }}>
+      <TailSpin
+        visible={true}
+        height="80"
+        width="80"
+        color="#0D9488"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
+  // if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
